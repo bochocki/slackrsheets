@@ -132,7 +132,7 @@ print_scoreboard = function(s, given_only = TRUE){
   tmp[which(is.na(tmp[, 3])), 3] <- " "
 
   knitr::kable(tmp,
-               format    = "pandoc",
+               format    = "html",#"pandoc",
                align     = c("r", "l", "r"),
                col.names = c(NULL, NULL, NULL))
 }
