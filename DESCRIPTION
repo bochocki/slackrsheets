@@ -1,0 +1,23 @@
+Package: slackrsheets
+Version: 0.0.0.9000
+Title: A Hyper-Specific Package for Writing Slack Commands to a Google Sheet
+Description: This package is for an extremely specific purpose: for taking
+    'slash' commands given in a slack client and posting the input to those
+    commands as cell values in a specific Google sheet. The package also
+    contains functions for reading summary pages in that sheet and printing
+    plain-text versions of those summary pages. Finally, the package makes
+    simple plots of the data contained in the spreadsheet.
+Authors@R: person("Brad", "Ochocki", email = "brad.ochocki@example.com",
+                  role = c("aut", "cre"))
+Depends:
+    R (>= 3.4)
+Imports:
+    ggplot2,
+    googlesheets,
+    knitr
+Suggests: testthat
+License: GPL-3 | file LICENSE
+URL: https://github.com/bochocki/slackrsheets
+BugReports: https://github.com/bochocki/slackrsheets/issues
+LazyData: true
+RoxygenNote: 6.0.1
