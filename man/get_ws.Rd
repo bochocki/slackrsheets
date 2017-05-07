@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ws}
 \alias{get_ws}
-\title{Silently connect to and download a Google Sheet}
+\title{Silently connect to and download a Google Sheet.}
 \usage{
 get_ws(key, ws)
 }

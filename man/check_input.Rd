@@ -2,12 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{check_input}
 \alias{check_input}
-\title{Check whether a user input is a time or a comment}
+\title{Check whether a user input is a time or a comment.}
 \usage{
 check_input(input)
 }
 \arguments{
-\item{input}{A charater string.}
+\item{input}{A numeric or charater string.}
 }
 \value{
 Returns \code{TRUE} if the input could be coerced to a time,
