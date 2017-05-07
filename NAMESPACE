@@ -3,6 +3,7 @@
 export(capwords)
 export(dm_date)
 export(format_time)
+export(get_ws)
 export(print_board)
 export(print_scoreboard)
 export(round_int)

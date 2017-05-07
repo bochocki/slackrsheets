@@ -1,15 +1,8 @@
 library(slackrsheets)
-source("key.R")
-
 context("print_tables")
 
-suppressWarnings(
-  suppressMessages( {
-    ss <- googlesheets::gs_key(key,lookup=TRUE)
-    r <- googlesheets::gs_read_csv(ss, ws="Ranks", verbose=FALSE)
-    s <- googlesheets::gs_read_csv(ss, ws = "simple_dashboard", verbose = FALSE)
-  })
-)
+r <- get_ws("key.txt", "Ranks")$ws
+s <- get_ws("key.txt", "simple_dashboard")$ws
 
 test_that("capwords capitalized the first letter of each word", {
   expect_equal(capwords("don't panic."), "Don't Panic.")

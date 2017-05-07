@@ -1,14 +1,10 @@
 library(slackrsheets)
-source("key.R")
 
 context("write_time")
 
-suppressWarnings(
-  suppressMessages( {
-    ss <- googlesheets::gs_key(key,lookup=TRUE)               # get sheet
-    d <- googlesheets::gs_read(ss, ws="Data", verbose=FALSE)  # load data
-  })
-)
+GS <- get_ws("key.txt", "Data")
+ss <- GS$ss
+d  <- GS$ws
 
 # get daily mini username from Slack username
 unames <- function(user) {
