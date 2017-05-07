@@ -57,9 +57,12 @@ write_time <- function(ss,
 
   if ( ! is.na(read_cell(d, user, unames, date, shift))) {
     if( ! overwrite) {
-      warning("This cell already has a value. To overwrite, include the flag -o")
+      val <- read_cell(d, user, unames, date, shift)
+      txt <- "It looks like %s already has an entry for [DATE]: %s.\nTo overwrite it, include the flag -o\nLike this: /mini <time. -o"
+      txt <- sprintf(txt, val)
     } else if (! check_input(time)) {
       edit_data(ss, d, time, user, unames, date, shift)
+
     } else {
       edit_data(ss, d, format_time(time), user, unames, date, shift)
     }
