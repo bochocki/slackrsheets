@@ -2,11 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
-.httr_oauth
-outline\.R
-
 \.httr-oauth
 
-*.Rproj
+outline\.R
 
-tests/
+tests/testthat/key\.R
+
+*.Rproj
