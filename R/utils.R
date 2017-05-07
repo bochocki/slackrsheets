@@ -1,4 +1,4 @@
-#' Silently connect to and download a Google Sheet
+#' Silently connect to and download a Google Sheet.
 #'
 #' \code{get_ws} takes a \code{key} and a worksheet (\code{ws}) and silently
 #'   returns the googlesheet object
@@ -25,7 +25,7 @@ get_ws <- function(key, ws) {
   return(list(ss = ss, ws = ww))
 }
 
-#' Check whether a user input is a time or a comment
+#' Check whether a user input is a time or a comment.
 #'
 #' \code{check_input} takes a user's input and determines whether or not it can
 #'   be coerced to a time via \code{format_time}.
