@@ -1,3 +1,5 @@
+# a function to
+
 #' Write a Daily Mini time to the Google Sheet.
 #'
 #' \code{write_time} takes a time provided by a specified user and writes that
@@ -52,13 +54,14 @@ write_time <- function(ss,
                        user,
                        unames,
                        date = Sys.Date(),
-                       shift = 0,
-                       overwrite = FALSE) {
+                       shift = 0) {
+
+  overwrite <- grepl("-ow", time)
 
   if ( ! is.na(read_cell(d, user, unames, date, shift))) {
     if( ! overwrite) {
       val <- read_cell(d, user, unames, date, shift)
-      txt <- "It looks like %s already has an entry for [DATE]: %s.\nTo overwrite it, include the flag -o\nLike this: /mini <time. -o"
+      txt <- "It looks like %s already has an entry for [DATE]: %s.\nTo overwrite it, include the flag -ow\nLike this: /mini <time. -ow"
       txt <- sprintf(txt, val)
     } else if (! check_input(time)) {
       edit_data(ss, d, time, user, unames, date, shift)
