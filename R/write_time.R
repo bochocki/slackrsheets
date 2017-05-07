@@ -55,18 +55,15 @@ write_time <- function(ss,
                        shift = 0,
                        overwrite = FALSE) {
 
-  is_time <- try(format_time(time), silent = T)
-
-
   if ( ! is.na(read_cell(d, user, unames, date, shift))) {
     if( ! overwrite) {
       warning("This cell already has a value. To overwrite, include the flag -o")
-    } else if (class(is_time) == "try-error") {
+    } else if (! check_input(time)) {
       edit_data(ss, d, time, user, unames, date, shift)
     } else {
       edit_data(ss, d, format_time(time), user, unames, date, shift)
     }
-  } else if (class(is_time) == "try-error") {
+  } else if (! check_input(time)) {
     edit_data(ss, d, time, user, unames, date, shift)
   } else {
     edit_data(ss, d, format_time(time), user, unames, date, shift)
