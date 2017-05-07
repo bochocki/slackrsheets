@@ -34,7 +34,7 @@ update <- function(text, user_name, response_url, channel_name) {
 
   }
 
-  GS <- get_ws("key.txt", "Data")
+  GS <- slackrsheets::get_ws("key.txt", "Data")
 
   return(
     invisible(
@@ -47,7 +47,7 @@ dash <- function(response_url){
 
   print("User called dash")
 
-  s <- get_ws("key.txt", "simple_dashboard")$ws
+  s <- slackrsheets::get_ws("key.txt", "simple_dashboard")$ws
 
   return(paste0(paste0(matrix(slackrsheets::print_scoreboard(s)),collapse="\n")," "))
 }
@@ -56,7 +56,7 @@ rank <- function(text, response_url){
 
   print("User called rank")
 
-  r <- get_ws("key.txt", "Ranks")$ws
+  r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
 
   return(paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")," "))
 }
