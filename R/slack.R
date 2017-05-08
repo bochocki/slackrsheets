@@ -208,7 +208,7 @@ slack_parse = function(text, user_name){
     } else if (length(shiftm) == 0) {
       shiftm <- NULL
     } else {
-      shiftm <- -as.numeric(shiftm)
+      shiftm <- as.numeric(shiftm)
       text <- trimws(gsub(paste0(" ", shiftm), "", text))
     }
   }
