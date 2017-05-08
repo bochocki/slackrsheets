@@ -9,11 +9,15 @@ Your time can be in just about any form; 1:02, 62, and 00:01:02 all have the sam
 To log somebody else's time, just use the `for` keyword:  
 `/mini 0:39 for Brad`
 
-You can also log future or past days using a `+` or `-` tag. So, logging a time for tomorrow would look like:  
+Keep in mind that **posting times are in ECB (East-Coast Bias)**, so if you're on the West Coast and you're posting a time late at night, you might need to post the time for *yesterday*. Which you can totally do.
+
+You can also log future or past days using a `+` or `-` tag. So, logging a time for yesterday would look like:  
+`/mini 42 -1`
+
+and logging a time for tomorrow would look like:  
 `/mini 42 +1`
 
-and logging a time for yesterday would look like:  
-`/mini 42 -1`
+You can time travel any number of days in any direction, so be careful not to get lost.
 
 You can also overwrite times by including a `-ow` flag. To overwrite yesterday's time for example, you can use:  
 `/mini 42 -1 -ow`
