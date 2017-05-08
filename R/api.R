@@ -126,11 +126,11 @@ mini <- function(text, user_name, response_url, channel_name) {
     dash(text, user_name, response_url, channel_name)
   } else if (grepl("rank|ranks", text)) {
     rank(text, user_name, response_url, channel_name)
-  } else if (grepl("help")){
+  } else if (grepl("help", text)){
     slack_message(response_url,
                   channel = channel_name,
                   user_name = user_name,
-                  text = "Peruse the help doc: https://github.com/bochocki/slackrsheets",
+                  text = "Checkout the help doc: https://github.com/bochocki/slackrsheets",
                   private = TRUE)
   } else {
     log(text, user_name, response_url, channel_name)
