@@ -20,16 +20,20 @@ log <- function(text, user_name, response_url, channel_name) {
 
   IN <- slack_parse(text, user_name)
 
-
   user_name  <- IN$user_name
   user_col   <- unames(user_name)
   user_given <- ssplit(user_col, " ")[1]
 
   GS <- get_ws("key.txt", "Data")
 
+  # calibrate date to EST
+  date <- as.Date(format(as.POSIXct(Sys.time(), tz = Sys.timezone()),
+                         tz = "America/New_York",
+                         usetz = TRUE))
+
   confirmation <- write_time(GS$ss, GS$ws,
-                             user_col, user_given,
-                             IN$time, IN$shift, IN$ow)
+                             IN$time, user_col,
+                             date, IN$shift, IN$ow)
 
   # Post public message about time
   slack_message(response_url,
