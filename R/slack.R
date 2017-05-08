@@ -215,6 +215,7 @@ slack_parse = function(text, user_name){
     }
   }
 
+  print(shiftp); print(shiftm)
   if (is.null(shiftp) & is.null(shiftm)) {
     shift <- 0
   } else if (is.null(shiftp) & !is.null(shiftm)) {
