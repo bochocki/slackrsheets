@@ -63,7 +63,7 @@ slack_text_pass <- function(user_given, time) {
     responses <- c(
       sprintf("You might be looking at some ORE today, %s.", user_given),
       sprintf("And. The. Crowd. Goes. Wild!"),
-      sprintf("There's an electricity in the room, I can feel it.\nThis is what it's all about."),
+      sprintf("There's an electricity in the room, I can feel it. Ya done good %s.", user_given),
       sprintf("Well done, %s. Well done.", user_given),
       sprintf("You kinda crushed it today %s.", user_given)
     )
