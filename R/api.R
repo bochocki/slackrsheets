@@ -15,7 +15,6 @@ log <- function(text, user_name, response_url, channel_name) {
 
   print(paste0(user_name, " called UPDATE at ", Sys.time()))
   print(paste0(user_name,"'s input was: ", text))
-  print("\n")
 
   source("unames.R")
 
@@ -77,8 +76,8 @@ rank <- function(text, user_name, response_url){
 
   print(paste0(user_name, " called RANK at ", Sys.time()))
   print(paste0(user_name, "'s input was: ", text))
-  print("\n")
 
+  text <- gsub("rank|ranks|rankings", "", text)
   r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
 
   return(paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")," "))
