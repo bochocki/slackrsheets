@@ -65,7 +65,6 @@ dash <- function(text, user_name, response_url){
 
   print(paste0(user_name, " called DASH at ", Sys.time()))
   print(paste0(user_name,"'s input was: ", text))
-  print("\n")
 
   s <- slackrsheets::get_ws("key.txt", "simple_dashboard")$ws
 
@@ -78,12 +77,20 @@ rank <- function(text, user_name, response_url){
   print(paste0(user_name, "'s input was: ", text))
 
   text <- gsub("rank|ranks|rankings", "", text)
+  print(text)
   r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
 
   return(paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")," "))
 }
 
 mini <- function(text, user_name, response_url, channel_name) {
+
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = "I'm on it.",
+                private = TRUE)
+
   if (grepl("dash|scoreboard", text)) {
     dash(text, user_name, response_url)
   } else if (grepl("rank|ranks", text)) {
