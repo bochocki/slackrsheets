@@ -100,7 +100,7 @@ mini <- function(text, user_name, response_url, channel_name) {
   slack_message(response_url,
                 channel = channel_name,
                 user_name = user_name,
-                text = "",
+                text = "_...got it._",
                 private = TRUE)
 
   if (grepl("dash|scoreboard", text)) {
