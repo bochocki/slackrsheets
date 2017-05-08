@@ -133,7 +133,7 @@ mini <- function(text, user_name, response_url, channel_name) {
     body = URLencode(" ")
   )
 
-  print(content(p))
+  print(httr::content(p))
 
   if (grepl("dash|scoreboard", text)) {
 
