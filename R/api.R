@@ -76,7 +76,7 @@ rank <- function(text, user_name, response_url){
   print(paste0(user_name, " called RANK at ", Sys.time()))
   print(paste0(user_name, "'s input was: ", text))
 
-  text <- gsub("rank|ranks|rankings", "", text)
+  text <- trimws(gsub("rank|ranks|ranking|rankings", "", text))
   print(text)
   r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
 
