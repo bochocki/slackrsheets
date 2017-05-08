@@ -157,5 +157,4 @@ mini <- function(text, user_name, response_url, channel_name) {
   } else {
     log(text, user_name, response_url, channel_name)
   }
-  return(invisible())
 }
