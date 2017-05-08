@@ -174,7 +174,7 @@ slack_forward <- function(url, channel_name, user_name, text, response_url) {
   h <- curl::new_handle(url = paste0(url, query))
 
   curl::multi_add(h)
-  curl::multi_run()
+  curl::multi_run(timeout = 0)
   curl::multi_cancel(h)
 
 }
