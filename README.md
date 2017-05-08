@@ -52,10 +52,3 @@ Privacy is important and I tried to take it seriously for this project, so it wi
 You can get help anytime by typing `/mini help`
 
 You can get a link to the Google spreadsheet by typing `/mini link`
-
-If you're getting either of these error messages from slackbot:
-
->Darn – that slash command didn't work (error message: `502_service_error`). Manage the command at Daily Mini Bot.   
->Darn – that slash command didn't work (error message: `Timeout was reached`). Manage the command at Daily Mini Bot.  
-
-Just rest easy knowing that things are probably working. I haven't figured out how to make those messages stop yet, and they haunt me in my sleep.
