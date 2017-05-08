@@ -110,9 +110,9 @@ mini <- function(text, user_name, response_url, channel_name) {
                 private = TRUE)
 
   if (grepl("dash|scoreboard", text)) {
-    dash(text, user_name, response_url)
+    dash(text, user_name, response_url, channel_name)
   } else if (grepl("rank|ranks", text)) {
-    rank(text, user_name, response_url)
+    rank(text, user_name, response_url, channel_name)
   } else {
     log(text, user_name, response_url, channel_name)
   }
