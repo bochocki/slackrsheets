@@ -166,6 +166,7 @@ mini <- function(text, user_name, response_url, channel_name) {
     #               user_name = user_name,
     #               text = get_link("key.txt"),
     #               private = TRUE)
+    return(" ")
 
   } else {
 
