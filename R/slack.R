@@ -48,7 +48,7 @@ slack_text_fail <- function(user_given) {
 #' @export
 slack_text_pass <- function(user_given, time) {
 
-  secs <- hms_to_s(time)
+  secs <- hms_to_s(format_time(time))
 
   if (secs < 15) {
     responses <- c(
