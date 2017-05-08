@@ -45,10 +45,6 @@ log <- function(text, user_name, response_url, channel_name) {
   if (!grepl("include the flag -ow", confirmation)) {
 
     # Post private message about time
-
-    print(IN$time)
-    print(check_input(IN$time))
-
     if (check_input(IN$time)) {
       slack_message(response_url,
                     channel = channel_name,
@@ -78,9 +74,13 @@ dash <- function(text, user_name, response_url, channel_name){
   print(paste0(user_name, " called DASH at ", Sys.time()))
   print(paste0(user_name,"'s input was: ", text))
 
-  s <- slackrsheets::get_ws("key.txt", "simple_dashboard")$ws
+  s <- get_ws("key.txt", "simple_dashboard")$ws
 
-  return(paste0(paste0(matrix(slackrsheets::print_scoreboard(s)),collapse="\n")," "))
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = slack_table(print_scoreboard(s)),
+                private = FALSE)
 }
 
 rank <- function(text, user_name, response_url, channel_name){
@@ -90,15 +90,13 @@ rank <- function(text, user_name, response_url, channel_name){
 
   text <- trimws(gsub("rank|ranks|ranking|rankings", "", text))
 
-  r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
+  r <- get_ws("key.txt", "Ranks")$ws
 
   slack_message(response_url,
                 channel = channel_name,
                 user_name = user_name,
-                text = paste0("```",paste0(matrix(slackrsheets::print_board("A", r)), collapse="\n"),"```"),
+                text = slack_table(print_board(text, r)),
                 private = FALSE)
-
-  #paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")),
 }
 
 mini <- function(text, user_name, response_url, channel_name) {
@@ -108,6 +106,12 @@ mini <- function(text, user_name, response_url, channel_name) {
                 user_name = user_name,
                 text = "",
                 private = FALSE)
+
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = "",
+                private = TRUE)
 
   if (grepl("dash|scoreboard", text)) {
     dash(text, user_name, response_url, channel_name)

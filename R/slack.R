@@ -155,7 +155,12 @@ slack_message <- function(url,
   )
 }
 
-# function to format tables
+# function to format pandoc tables as code blocks in Slack
+slack_table <- function(x) {
+  paste0("```",
+         paste0(matrix(x), collapse="\n"),
+         "```")
+}
 
 #' A function to parse Slack input.
 #'
