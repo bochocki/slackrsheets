@@ -95,8 +95,8 @@ rank <- function(text, user_name, response_url, channel_name){
   slack_message(response_url,
                 channel = channel_name,
                 user_name = user_name,
-                text = paste0(paste0("```",matrix(slackrsheets::print_board("A", r)),"```", collapse="\n")),
-                private = TRUE)
+                text = paste0("```",paste0(matrix(slackrsheets::print_board("A", r)), collapse="\n"),"```"),
+                private = FALSE)
 
   #paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")),
 }
