@@ -151,8 +151,9 @@ mini <- function(text, user_name, response_url, channel_name) {
 
   } else if (grepl("link", text)) {
 
-    cat(paste0(user_name, " called LINK at ", Sys.time(),"\n"))
-    cat(paste0(user_name,"'s input was: ", text))
+    print_call(user_name, "LINK", text)
+    # cat(paste0(user_name, " called LINK at ", Sys.time(), "\n"))
+    # cat(paste0(user_name,"'s input was: ", text), "\n")
     return(get_link("key.txt"))
 
   } else if (grepl("help", text)) {

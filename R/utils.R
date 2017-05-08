@@ -33,6 +33,14 @@ get_link <- function(key){
          "/edit#gid=0")
 }
 
+print_call <- function(user_name, fun, text) {
+  cat(
+    paste0(
+      paste0(user_name, " called ", fun, " at ", Sys.time(), "\n"),
+      paste0(user_name,"'s input was: ", text, "\n")
+    )
+  )
+}
 #' Check whether a user input is a time or a comment.
 #'
 #' \code{check_input} takes a user's input and determines whether or not it can
