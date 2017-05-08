@@ -146,7 +146,13 @@ mini <- function(text, user_name, response_url, channel_name) {
     slack_message(response_url,
                   channel = channel_name,
                   user_name = user_name,
-                  text = "Checkout the help doc: https://github.com/bochocki/slackrsheets",
+                  text = "Check out the help doc: https://github.com/bochocki/slackrsheets",
+                  private = TRUE)
+  } else if (grepl("link", text)) {
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = get_link("key.txt"),
                   private = TRUE)
   } else {
     log(text, user_name, response_url, channel_name)

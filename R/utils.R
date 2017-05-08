@@ -25,6 +25,14 @@ get_ws <- function(key, ws) {
   return(list(ss = ss, ws = ww))
 }
 
+get_link <- function(key){
+
+  paste0("Daily Mini Spreadsheet: ",
+         "https://docs.google.com/spreadsheets/d/",
+         scan(key, what = "char", quiet = TRUE),
+         "/edit")
+}
+
 #' Check whether a user input is a time or a comment.
 #'
 #' \code{check_input} takes a user's input and determines whether or not it can
