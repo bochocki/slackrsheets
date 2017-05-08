@@ -6,17 +6,10 @@ GS <- get_ws("key.txt", "Data")
 ss <- GS$ss
 d  <- GS$ws
 
-# get daily mini username from Slack username
-unames <- function(user) {
-  switch(user,
-         X13           = "X13"
-  )
-}
-
 # a function to pull a range of cells from the spreadsheet.
-testrange_data <- function(ss, d, unames, range){
-  cells <- paste0(get_cell(d, "X13", unames, "2017-01-04", 0), ":",
-                  get_cell(d, "X13", unames, "2017-01-04", range-1))
+testrange_data <- function(ss, d, range){
+  cells <- paste0(get_cell(d, "X13", "2017-01-04", 0), ":",
+                  get_cell(d, "X13", "2017-01-04", range-1))
   suppressWarnings(
     suppressMessages( {
       googlesheets::gs_read(ss,
@@ -29,15 +22,15 @@ testrange_data <- function(ss, d, unames, range){
 }
 
 test_that("get_cell gets the correct cell coordinates", {
-  expect_equal(get_cell(d, "X13", unames, "2017-01-04", -3)[[1]], "M6")
-  expect_equal(get_cell(d, "X13", unames, "2017-01-04",  0)[[1]], "M9")
-  expect_equal(get_cell(d, "X13", unames, "2017-01-04",  3)[[1]], "M12")
+  expect_equal(get_cell(d, "X13", "2017-01-04", -3)[[1]], "M6")
+  expect_equal(get_cell(d, "X13", "2017-01-04",  0)[[1]], "M9")
+  expect_equal(get_cell(d, "X13", "2017-01-04",  3)[[1]], "M12")
 })
 
 test_that("read_cell grabs the correct data", {
-  expect_equal(read_cell(d, "X13", unames, "2017-01-02", -1)[[1]], "1:10:42")
-  expect_equal(read_cell(d, "X13", unames, "2017-01-02",  0)[[1]], "fail")
-  expect_equal(read_cell(d, "X13", unames, "2017-01-02",  1)[[1]], "0:00:42")
+  expect_equal(read_cell(d, "X13", "2017-01-02", -1)[[1]], "1:10:42")
+  expect_equal(read_cell(d, "X13", "2017-01-02",  0)[[1]], "fail")
+  expect_equal(read_cell(d, "X13", "2017-01-02",  1)[[1]], "0:00:42")
 })
 
 tmp <- c("FAIL",
@@ -51,26 +44,26 @@ tmp <- c("FAIL",
 test_that("edit_data writes data to a cell", {
   for (i in 1:length(tmp)) {
     suppressMessages(
-      edit_data(ss, d, tmp[i], "X13", unames, "2017-01-04", i - 1)
+      edit_data(ss, d, tmp[i], "X13", "2017-01-04", i - 1)
     )
   }
-  expect_equal(testrange_data(ss, d, unames, length(tmp)), tmp)
+  expect_equal(testrange_data(ss, d, length(tmp)), tmp)
 })
 
 test_that("edit_data deletes values", {
   for (i in 1:length(tmp)) {
-    edit_data(ss, d, " ", "X13", unames, "2017-01-04", i - 1)
+    edit_data(ss, d, " ", "X13", "2017-01-04", i - 1)
   }
-  expect_equal(testrange_data(ss, d, unames, length(tmp)), rep(NA, length(tmp)))
+  expect_equal(testrange_data(ss, d, length(tmp)), rep(NA, length(tmp)))
 })
 
 test_that("write_time writes data to a cell", {
   for (i in 1:length(tmp)) {
     suppressMessages(
-      write_time(ss, d, tmp[i], "X13", unames, "2017-01-04", i - 1, TRUE)
+      write_time(ss, d, tmp[i], "X13", "2017-01-04", i - 1, TRUE)
     )
   }
-  expect_equal(testrange_data(ss, d, unames, length(tmp)), tmp)
+  expect_equal(testrange_data(ss, d, length(tmp)), tmp)
 })
 
 test <- list(c("00:00:42",  42),
@@ -86,31 +79,25 @@ test <- list(c("00:00:42",  42),
 test_that("write_time writes various time formats to a cell", {
   for (i in 1:length(test)) {
     suppressMessages(
-      write_time(ss, d, test[[i]][2], "X13", unames, "2017-01-04", i - 1, TRUE)
+      write_time(ss, d, test[[i]][2], "X13", "2017-01-04", i - 1, TRUE)
     )
   }
-  expect_equal(as.character(testrange_data(ss, d, unames, length(test))),
+  expect_equal(as.character(testrange_data(ss, d, length(test))),
                unlist(test)[seq(1, 2 * length(test), by = 2)])
 })
 
-suppressWarnings(
-  suppressMessages( {
-    d <- googlesheets::gs_read(ss, ws="Data", verbose=FALSE) # load data
-  })
-)
+d <- get_ws("key.txt", "Data")$ws
 
 test_that("write_time doesn't overwrite existing data when overwrite = F", {
-  expect_warning(
-    write_time(ss, d, "Don't Panic.", "X13", unames, "2017-01-04", 0, FALSE)
+  expect_match(
+    write_time(ss, d, "Don't Panic.", "X13", "2017-01-04", 0, FALSE),
+    "It looks like"
   )
 })
 
 test_that("write_time overwrites data in a cell when overwrite = T", {
   for (i in 1:length(test)) {
-    suppressMessages(
-      write_time(ss, d, " ", "X13", unames, "2017-01-04", i - 1, TRUE)
-    )
+    write_time(ss, d, " ", "X13", "2017-01-04", i - 1, TRUE)
   }
-  expect_equal(testrange_data(ss, d, unames, length(test)),
-               rep(NA, length(test)))
+  expect_equal(testrange_data(ss, d, length(test)), rep(NA, length(test)))
 })
