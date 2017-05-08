@@ -168,10 +168,14 @@ slack_message <- function(url,
 #' @export
 slack_forward <- function(url, channel_name, user_name, text, response_url) {
 
-  q <- sprintf("text=%s&user_name=%s&response_url=%s&channel_name=%s",
-               text, user_name, response_url, channel_name)
+  query <- sprintf("?text=%s&user_name=%s&response_url=%s&channel_name=%s",
+                   text, user_name, response_url, channel_name)
 
-  httr::GET(url, query = q)
+  h <- curl::new_handle(url = paste0(url, query))
+
+  curl::multi_add(h)
+  curl::multi_run()
+  curl::multi_cancel(h)
 
 }
 
