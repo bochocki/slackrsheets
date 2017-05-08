@@ -22,7 +22,7 @@ You can time travel any number of days in any direction, so be careful not to ge
 You can also overwrite times by including a `-ow` flag. To overwrite yesterday's time for example, you can use:  
 `/mini 42 -1 -ow`
 
-You can chain all of these things together too, the only important thing to make sure that the time (or `fail`). comes first, and that anytime you use `for` it should be between the time and the person's name.
+You can chain all of these things together too, the only important thing is to make sure that the time (or `fail`). comes first, and that anytime you use `for` it should be between the time and the person's name.
 
 In other words, the most complex call you can make would look more or less like this:  
 `/mini 100 for Brad +1 -ow`
