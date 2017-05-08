@@ -45,10 +45,15 @@ The tables and abbreviations (case insensitive) are:
 - All-Time Points: `POINTS`, `POINT`, or `P`
 - All-Time Wins: `WINS`, `WIN`, or `W`
 
+# Privacy
+Privacy is important and I tried to take it seriously for this project, so it will probably be difficult to use this package out-of-the-box. There are three files that live on the secure server: `key.txt`, `token.txt`, and `unames.R`. These contain the key to the spreadsheet, the Slack team token, and player usernames, respectively. As far as I know, there's no way to access any of this information though the API.
+
 # Help and reminders
 You can get help anytime by typing `/mini help`
 
-If you're getting either of these error messages from slackbot:  
+You can get a link to the Google spreadsheet by typing `/mini link`
+
+If you're getting either of these error messages from slackbot:
 
 >Darn – that slash command didn't work (error message: `502_service_error`). Manage the command at Daily Mini Bot.   
 >Darn – that slash command didn't work (error message: `Timeout was reached`). Manage the command at Daily Mini Bot.  
