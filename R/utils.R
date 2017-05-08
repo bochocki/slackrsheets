@@ -30,7 +30,7 @@ get_link <- function(key){
   paste0("Daily Mini Spreadsheet: ",
          "https://docs.google.com/spreadsheets/d/",
          scan(key, what = "char", quiet = TRUE),
-         "/edit")
+         "/edit#gid=0")
 }
 
 #' Check whether a user input is a time or a comment.
