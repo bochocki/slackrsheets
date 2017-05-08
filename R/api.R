@@ -73,7 +73,7 @@ log <- function(text, user_name, response_url, channel_name) {
   }
 }
 
-dash <- function(text, user_name, response_url){
+dash <- function(text, user_name, response_url, channel_name){
 
   print(paste0(user_name, " called DASH at ", Sys.time()))
   print(paste0(user_name,"'s input was: ", text))
@@ -83,7 +83,7 @@ dash <- function(text, user_name, response_url){
   return(paste0(paste0(matrix(slackrsheets::print_scoreboard(s)),collapse="\n")," "))
 }
 
-rank <- function(text, user_name, response_url){
+rank <- function(text, user_name, response_url, channel_name){
 
   print(paste0(user_name, " called RANK at ", Sys.time()))
   print(paste0(user_name, "'s input was: ", text))
