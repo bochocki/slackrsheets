@@ -124,7 +124,7 @@ rank <- function(text, user_name, response_url, channel_name){
 
 mini <- function(text, user_name, response_url, channel_name) {
 
-  httr::POST(
+  p <- httr::POST(
     url = response_url,
     encode = "form",
     httr::add_headers(Status         = 200L,
@@ -132,6 +132,8 @@ mini <- function(text, user_name, response_url, channel_name) {
                       Accept         = "*/*"),
     body = URLencode(" ")
   )
+
+  print(content(p))
 
   if (grepl("dash|scoreboard", text)) {
 
