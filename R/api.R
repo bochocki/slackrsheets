@@ -54,6 +54,7 @@ log <- function(text, user_name, response_url, channel_name) {
     # Post private message about time
 
     print(IN$time)
+    print(check_input(IN$time))
 
     if (check_input(IN$time)) {
       slack_message(response_url,
@@ -98,7 +99,7 @@ mini <- function(text, user_name, response_url, channel_name) {
   slack_message(response_url,
                 channel = channel_name,
                 user_name = user_name,
-                text = "I'm on it.",
+                text = "",
                 private = TRUE)
 
   if (grepl("dash|scoreboard", text)) {
