@@ -35,13 +35,6 @@ log <- function(text, user_name, response_url, channel_name) {
                              IN$time, user_col,
                              date, IN$shift, IN$ow)
 
-  # Post public message about time
-  slack_message(response_url,
-                channel = channel_name,
-                user_name = user_name,
-                text = slack_post_time(user_given, IN$time, IN$shift),
-                private = FALSE)
-
   # Post private confirmation that time was uploaded
   slack_message(response_url,
                 channel = channel_name,
@@ -69,6 +62,14 @@ log <- function(text, user_name, response_url, channel_name) {
                     text = slack_text_fail(user_given),
                     private = TRUE)
     }
+
+    # Post public message about time
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = slack_post_time(user_given, IN$time, IN$shift),
+                  private = FALSE)
+
   }
 }
 
