@@ -186,8 +186,7 @@ slack_parse = function(text, user_name){
   shiftp <- NULL
 
   if (grepl("+", text)) {
-    shiftp <- ssplit(text, "[ ][+]")[-1]
-    shiftp <- suppressWarnings(shiftp[which(! is.na(as.numeric(shiftp)))])
+    shiftp <- ssplit(text," ")[grep("[+]", ssplit(text," "))]
     if (length(shiftp) > 1) {
       return(paste0("A `%2B` sign can only be used with one number to record ",
                   "the time for a future day. Tomorrow's time, for example, can",
@@ -201,8 +200,7 @@ slack_parse = function(text, user_name){
   }
 
   if (grepl("-", text)) {
-    shiftm <- ssplit(text, "[ ][-]")[-1]
-    shiftm <- suppressWarnings(shiftm[which(! is.na(as.numeric(shiftm)))])
+    shiftm <- ssplit(text," ")[grep("[-]", ssplit(text," "))]
     if (length(shiftm) > 1) {
       return(paste0("A `-` sign can only be used with one number to record ",
                   "the dime for a future day. Yesterday's time, for example, ",
