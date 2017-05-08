@@ -115,11 +115,12 @@ rank <- function(text, user_name, response_url, channel_name){
 
   r <- get_ws("key.txt", "Ranks")$ws
 
-  slack_message(response_url,
-                channel = channel_name,
-                user_name = user_name,
-                text = slack_table(print_board(text, r)),
-                private = TRUE)
+  # slack_message(response_url,
+  #               channel = channel_name,
+  #               user_name = user_name,
+  #               text = slack_table(print_board(text, r)),
+  #               private = TRUE)
+  return(slack_table(print_board(text, r)))
 }
 
 mini <- function(text, user_name, response_url, channel_name) {
@@ -141,7 +142,7 @@ mini <- function(text, user_name, response_url, channel_name) {
 
   } else if (grepl("rank|ranks", text)) {
 
-    rank(text, user_name, response_url, channel_name)
+    return(rank(text, user_name, response_url, channel_name))
 
   } else if (grepl("ore", text)) {
 
