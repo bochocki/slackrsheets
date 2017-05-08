@@ -4,7 +4,7 @@
 \alias{edit_data}
 \title{Write a value to a Google Sheet.}
 \usage{
-edit_data(ss, d, input, user, unames, date = Sys.Date(), shift = 0)
+edit_data(ss, d, input, user_col, date = Sys.Date(), shift = 0)
 }
 \arguments{
 \item{ss}{a registered Google spreadsheet, i.e. a \code{\link{googlesheet}}
@@ -17,12 +17,8 @@ object}
 character vector, presumably an atomic vector, a factor, a matrix or a
 data.frame}
 
-\item{user}{A character string providing a username, which should
+\item{user_col}{A character string providing a username, which should
 correspond to a column in the spreadsheet.}
-
-\item{unames}{A user-defined \code{\link[base]{switch}} function that
-identifies user-specific column-names given a username (see
-\code{\link{write_time}} examples).}
 
 \item{date}{an optional parameter to specify the date in a YYY-MM-DD format.
 Default is \code{Sys.Date()}.}
@@ -31,10 +27,14 @@ Default is \code{Sys.Date()}.}
 date should be shifted. Default is 0. The day after today (tomorrow) is +1,
 yesterday is -1, etc.}
 }
+\value{
+Returns the version of \code{input} that was uploaded, either an
+  HH:MM:SS transformation of the input, or the input as a character string.
+}
 \description{
 \code{edit_data} is a wrapper for \code{\link[googlesheets]{gs_edit_cells}}
   that writes \code{input} to a worksheet called 'Data', in a cell specified
-  by \code{user} and \code{shift}.
+  by \code{user_col} and \code{shift}.
 }
 \details{
 This function is not called directly, but is a helper function for

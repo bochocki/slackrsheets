@@ -4,7 +4,7 @@
 \alias{write_time}
 \title{Write a Daily Mini time to the Google Sheet.}
 \usage{
-write_time(ss, d, time, user, unames, date = Sys.Date(), shift = 0,
+write_time(ss, d, time, user_col, date = Sys.Date(), shift = 0,
   overwrite = FALSE)
 }
 \arguments{
@@ -24,12 +24,8 @@ Any any number of hours, minutes, or seconds are valid (i.e.,
 \code{"0:03"}, \code{"000:3"}, \code{"3"}, and \code{"00:00:03"} are all
 valid ways to input three seconds).}
 
-\item{user}{A character string providing a username, which should
+\item{user_col}{A character string providing a username, which should
 correspond to a column in the spreadsheet.}
-
-\item{unames}{A user-defined \code{\link[base]{switch}} function that
-identifies user-specific column-names given a username (see
-\code{\link{write_time}} examples).}
 
 \item{date}{an optional parameter to specify the date in a YYY-MM-DD format.
 Default is \code{Sys.Date()}.}
@@ -49,18 +45,4 @@ The function returns a message, stating which cell was written to,
 \description{
 \code{write_time} takes a time provided by a specified user and writes that
   time to the corresponding cell in a data spreadsheet given by \code{ss}.
-}
-\examples{
-\dontrun{
-
-unames <- function(user) {
-  switch(user,
-         user_1 = "A_User",
-         user_2 = "B_User",
-         user_3 = "C_User"
-  )
-}
-
-write_time(ss, d, "0:42", "user_1", unames = unames)
-}
 }

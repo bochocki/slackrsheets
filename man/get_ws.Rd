@@ -7,7 +7,7 @@
 get_ws(key, ws)
 }
 \arguments{
-\item{key}{Path to a file that contains s unique key for the Google sheet.
+\item{key}{Path to a file that contains a unique key for the Google sheet.
 Should be readable by \code{link[base]{scan}} with \code{what="char"}.}
 
 \item{ws}{A character string specifying title of the worksheet.}

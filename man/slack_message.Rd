@@ -2,9 +2,9 @@
 % Please edit documentation in R/slack.R
 \name{slack_message}
 \alias{slack_message}
-\title{Given inputs, uses httr::POST to post a message to Slack.}
+\title{A function to build a message and POST it to Slack.}
 \usage{
-slack_message(url, channel = NULL, username = NULL, text = NULL,
+slack_message(url, channel = NULL, user_name = NULL, text = NULL,
   private = TRUE)
 }
 \arguments{
@@ -12,12 +12,12 @@ slack_message(url, channel = NULL, username = NULL, text = NULL,
 
 \item{channel}{The channel to post the message to (character string).}
 
-\item{username}{The username to post in response to (character string).}
-
 \item{text}{The text that should be posted (character string).}
 
 \item{private}{Whether this message should be posted privately to the user
 (\code{TRUE}), or posted publically (\code{FALSE}).}
+
+\item{username}{The username to post in response to (character string).}
 }
 \description{
 Given inputs, uses httr::POST to post a message to Slack.

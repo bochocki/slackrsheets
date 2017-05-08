@@ -4,18 +4,14 @@
 \alias{read_cell}
 \title{Read the current value in a specified cell.}
 \usage{
-read_cell(d, user, unames, date = Sys.Date(), shift = 0)
+read_cell(d, user_col, date = Sys.Date(), shift = 0)
 }
 \arguments{
 \item{d}{A data frame version of the "Data" worksheet in spreadsheet
 \code{ss} (see \code{\link[googlesheets]{googlesheet}}).}
 
-\item{user}{A character string providing a username, which should
+\item{user_col}{A character string providing a username, which should
 correspond to a column in the spreadsheet.}
-
-\item{unames}{A user-defined \code{\link[base]{switch}} function that
-identifies user-specific column-names given a username (see
-\code{\link{write_time}} examples).}
 
 \item{date}{an optional parameter to specify the date in a YYY-MM-DD format.
 Default is \code{Sys.Date()}.}
@@ -29,7 +25,7 @@ The function returns the value in the cell.
 }
 \description{
 \code{read_cell} finds a cell specified by a column that corresponds to
-  \code{user} and a row specified by today's date, possibly
+  \code{user_col} and a row specified by today's date, possibly
   shifted by \code{shift}, and returns the corresponding value.
 }
 \details{
