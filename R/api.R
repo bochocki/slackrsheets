@@ -127,9 +127,10 @@ mini <- function(text, user_name, response_url, channel_name) {
   httr::POST(
     url = response_url,
     encode = "form",
-    httr::add_headers(`Content-Type` = "application/x-www-form-urlencoded",
+    httr::add_headers(Status         = 200L,
+                      `Content-Type` = "application/x-www-form-urlencoded",
                       Accept         = "*/*"),
-    body = URLencode("payload={\"status\": \"OK\"}")
+    body = URLencode(" ")
   )
 
   if (grepl("dash|scoreboard", text)) {
