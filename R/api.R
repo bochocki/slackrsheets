@@ -140,6 +140,8 @@ mini <- function(text, user_name, response_url, channel_name) {
     dash(text, user_name, response_url, channel_name)
   } else if (grepl("rank|ranks", text)) {
     rank(text, user_name, response_url, channel_name)
+  } else if (grepl("ore", text)) {
+    ore(text, user_name, response_url, channel_name)
   } else if (grepl("help", text)){
     slack_message(response_url,
                   channel = channel_name,
