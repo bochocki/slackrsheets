@@ -53,6 +53,7 @@ slack_text_pass <- function(user_given, time) {
   if (secs < 15) {
     responses <- c(
       sprintf("SLOW DOWN, %s, YOU'RE GONNA HURT SOMEBODY!", user_given),
+      sprintf("_Damn_ %s, where's the fire?!", user_given),
       sprintf("How do you even read the clues that fast?"),
       sprintf("That's a _mighty_ fast time %s. We're gonna need you to pee into a cup.", user_given),
       sprintf("%s: Please contact CREVICE to verify your time.", user_given),
