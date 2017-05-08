@@ -130,8 +130,7 @@ mini <- function(text, user_name, response_url, channel_name) {
     httr::add_headers(Status         = 200L,
                       `Content-Type` = "application/x-www-form-urlencoded",
                       Accept         = "*/*"),
-    body = URLencode(" "),
-    verbose()
+    body = URLencode(" ")
   )
 
   if (grepl("dash|scoreboard", text)) {
