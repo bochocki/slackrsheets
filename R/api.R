@@ -80,7 +80,7 @@ dash <- function(text, user_name, response_url, channel_name){
                 channel = channel_name,
                 user_name = user_name,
                 text = slack_table(print_scoreboard(s)),
-                private = FALSE)
+                private = TRUE)
 }
 
 rank <- function(text, user_name, response_url, channel_name){
@@ -96,7 +96,7 @@ rank <- function(text, user_name, response_url, channel_name){
                 channel = channel_name,
                 user_name = user_name,
                 text = slack_table(print_board(text, r)),
-                private = FALSE)
+                private = TRUE)
 }
 
 mini <- function(text, user_name, response_url, channel_name) {
@@ -120,4 +120,5 @@ mini <- function(text, user_name, response_url, channel_name) {
   } else {
     log(text, user_name, response_url, channel_name)
   }
+  return(invisible())
 }
