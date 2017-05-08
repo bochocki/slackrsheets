@@ -159,13 +159,13 @@ mini <- function(text, user_name, response_url, channel_name) {
 
   } else if (grepl("link", text)) {
 
-    cat(paste0(user_name, " called LINK at ", Sys.time(),"\n"))
-    cat(paste0(user_name,"'s input was: ", text))
-    slack_message(response_url,
-                  channel = channel_name,
-                  user_name = user_name,
-                  text = get_link("key.txt"),
-                  private = TRUE)
+    # cat(paste0(user_name, " called LINK at ", Sys.time(),"\n"))
+    # cat(paste0(user_name,"'s input was: ", text))
+    # slack_message(response_url,
+    #               channel = channel_name,
+    #               user_name = user_name,
+    #               text = get_link("key.txt"),
+    #               private = TRUE)
 
   } else {
 
