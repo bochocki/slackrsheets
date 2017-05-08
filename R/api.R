@@ -108,21 +108,9 @@ rank <- function(text, user_name, response_url, channel_name){
                 user_name = user_name,
                 text = slack_table(print_board(text, r)),
                 private = TRUE)
-  #return(slack_table(print_board(text, r)))
 }
 
 mini <- function(text, user_name, response_url, channel_name) {
-
-  # p <- httr::POST(
-  #   url = response_url,
-  #   encode = "form",
-  #   httr::add_headers(Status         = 200L,
-  #                     `Content-Type` = "application/x-www-form-urlencoded",
-  #                     Accept         = "*/*"),
-  #   body = URLencode("payload={\"response_type\": \"ephemeral\"}")
-  # )
-  #
-  # print(httr::content(p))
 
   if (grepl("dash|scoreboard", text)) {
 
@@ -133,7 +121,6 @@ mini <- function(text, user_name, response_url, channel_name) {
 
     print_call(user_name, "RANK", text)
     rank(text, user_name, response_url, channel_name)
-    #return(rank(text, user_name, response_url, channel_name))
 
   } else if (grepl("ore", text)) {
 
@@ -143,17 +130,29 @@ mini <- function(text, user_name, response_url, channel_name) {
   } else if (grepl("link", text)) {
 
     print_call(user_name, "LINK", text)
-    return(get_link("key.txt"))
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = get_link("key.txt"),
+                  private = TRUE)
 
   } else if (grepl("help", text)) {
 
     print_call(user_name, "HELP", text)
-    return("Check out the help doc: https://github.com/bochocki/slackrsheets")
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = "Check out the help doc: https://github.com/bochocki/slackrsheets",
+                  private = TRUE)
 
-  } else if (grepl("none", text)) {
+  } else if (grepl("talk", text)) {
 
-    print_call(user_name, "NONE", text)
-    return("")
+    print_call(user_name, "TALK", text)
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = "Sorry not right now, I have a headache.",
+                  private = TRUE)
 
   } else {
 
