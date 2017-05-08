@@ -137,12 +137,19 @@ mini <- function(text, user_name, response_url, channel_name) {
                 private = TRUE)
 
   if (grepl("dash|scoreboard", text)) {
+
     dash(text, user_name, response_url, channel_name)
+
   } else if (grepl("rank|ranks", text)) {
+
     rank(text, user_name, response_url, channel_name)
+
   } else if (grepl("ore", text)) {
+
     ore(text, user_name, response_url, channel_name)
+
   } else if (grepl("help", text)){
+
     cat(paste0(user_name, " called HELP at ", Sys.time(),"\n"))
     cat(paste0(user_name,"'s input was: ", text))
     slack_message(response_url,
@@ -150,7 +157,9 @@ mini <- function(text, user_name, response_url, channel_name) {
                   user_name = user_name,
                   text = "Check out the help doc: https://github.com/bochocki/slackrsheets",
                   private = TRUE)
+
   } else if (grepl("link", text)) {
+
     cat(paste0(user_name, " called LINK at ", Sys.time(),"\n"))
     cat(paste0(user_name,"'s input was: ", text))
     slack_message(response_url,
@@ -158,7 +167,10 @@ mini <- function(text, user_name, response_url, channel_name) {
                   user_name = user_name,
                   text = get_link("key.txt"),
                   private = TRUE)
+
   } else {
+
     log(text, user_name, response_url, channel_name)
+
   }
 }
