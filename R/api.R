@@ -13,8 +13,8 @@
 # }
 log <- function(text, user_name, response_url, channel_name) {
 
-  print(paste0(user_name, " called UPDATE at ", Sys.time()))
-  print(paste0(user_name,"'s input was: ", text))
+  cat(paste0(user_name, " called LOG at ", Sys.time(),"\n"))
+  cat(paste0(user_name,"'s input was: ", text))
 
   source("unames.R")
 
@@ -80,8 +80,8 @@ log <- function(text, user_name, response_url, channel_name) {
 
 dash <- function(text, user_name, response_url, channel_name){
 
-  print(paste0(user_name, " called DASH at ", Sys.time()))
-  print(paste0(user_name,"'s input was: ", text))
+  cat(paste0(user_name, " called DASH at ", Sys.time(),"\n"))
+  cat(paste0(user_name,"'s input was: ", text))
 
   s <- get_ws("key.txt", "simple_dashboard")$ws
 
@@ -94,8 +94,8 @@ dash <- function(text, user_name, response_url, channel_name){
 
 rank <- function(text, user_name, response_url, channel_name){
 
-  print(paste0(user_name, " called RANK at ", Sys.time()))
-  print(paste0(user_name, "'s input was: ", text))
+  cat(paste0(user_name, " called RANK at ", Sys.time(),"\n"))
+  cat(paste0(user_name,"'s input was: ", text))
 
   text <- trimws(gsub("rank|ranks|ranking|rankings", "", text))
 
