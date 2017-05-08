@@ -151,22 +151,12 @@ mini <- function(text, user_name, response_url, channel_name) {
 
     cat(paste0(user_name, " called HELP at ", Sys.time(),"\n"))
     cat(paste0(user_name,"'s input was: ", text))
-    slack_message(response_url,
-                  channel = channel_name,
-                  user_name = user_name,
-                  text = "Check out the help doc: https://github.com/bochocki/slackrsheets",
-                  private = TRUE)
+    return("Check out the help doc: https://github.com/bochocki/slackrsheets")
 
   } else if (grepl("link", text)) {
 
-    # cat(paste0(user_name, " called LINK at ", Sys.time(),"\n"))
-    # cat(paste0(user_name,"'s input was: ", text))
-    # slack_message(response_url,
-    #               channel = channel_name,
-    #               user_name = user_name,
-    #               text = get_link("key.txt"),
-    #               private = TRUE)
-
+    cat(paste0(user_name, " called LINK at ", Sys.time(),"\n"))
+    cat(paste0(user_name,"'s input was: ", text))
     return(get_link("key.txt"))
 
   } else {
