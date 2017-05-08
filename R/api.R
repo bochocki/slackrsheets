@@ -92,7 +92,13 @@ rank <- function(text, user_name, response_url){
   print(text)
   r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
 
-  return(paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")," "))
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = paste0("```",matrix(slackrsheets::print_board("A", r)),"```", collapse="\n")
+                private = TRUE)
+
+  #paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")),
 }
 
 mini <- function(text, user_name, response_url, channel_name) {
@@ -100,7 +106,7 @@ mini <- function(text, user_name, response_url, channel_name) {
   slack_message(response_url,
                 channel = channel_name,
                 user_name = user_name,
-                text = "_...got it._",
+                text = "",
                 private = TRUE)
 
   if (grepl("dash|scoreboard", text)) {
