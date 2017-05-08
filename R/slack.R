@@ -171,7 +171,7 @@ slack_forward <- function(url, channel_name, user_name, text, response_url) {
   query <- sprintf("?text=%s&user_name=%s&response_url=%s&channel_name=%s",
                    text, user_name, response_url, channel_name)
 
-  query <- gsub("+", "%2B", query)
+  query <- gsub("[+]", "%2B", URLencode(query))
 
   h <- curl::new_handle(url = URLencode(paste0(url, query)))
 
