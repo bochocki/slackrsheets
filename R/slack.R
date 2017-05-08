@@ -176,6 +176,9 @@ slack_parse = function(text, user_name){
   }
 
   # find out the number of days that the entry should be shifted
+  shiftm <- NULL
+  shiftp <- NULL
+
   if (grepl("+", text)) {
     shiftp <- ssplit(text, "[ ][+]")[-1]
     shiftp <- suppressWarnings(shiftp[which(! is.na(as.numeric(shiftp)))])
