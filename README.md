@@ -30,6 +30,8 @@ In other words, the most complex call you can make would look more or less like 
 # Printing Tables
 You can print the spreadsheet tables using the `/mini` slash command too. All the tables are printed privately (meaning only you can see them), so you don't need to worry about flooding a channel if you want to check out some _rankings_.
 
+You can check out today's _ore_ (ahem, medals) with `/mini ore`
+
 You can print the Daily Mini dashboard by calling `/mini dash`,  `/mini dashboard`, or `/mini scoreboard`. Some of the award have been changed slightly from the spreadsheet so they fit on narrow mobile devices.
 
 You can print any Ranking table by using the keywords `rank`, `ranks`, or `rankings` followed by an abbreviation for the table.  
