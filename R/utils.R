@@ -37,7 +37,7 @@ print_call <- function(user_name, fun, text) {
   cat(
     paste0(
       paste0(user_name, " called ", fun, " at ", Sys.time(), "\n"),
-      paste0(user_name,"'s input was: ", text, "\n")
+      paste0(user_name,"'s input was: ", text, "\n\n")
     )
   )
 }

@@ -13,9 +13,6 @@
 # }
 log <- function(text, user_name, response_url, channel_name) {
 
-  cat(paste0(user_name, " called LOG at ", Sys.time(),"\n"))
-  cat(paste0(user_name,"'s input was: ", text))
-
   source("unames.R")
 
   IN <- slack_parse(text, user_name)
@@ -80,9 +77,6 @@ log <- function(text, user_name, response_url, channel_name) {
 
 dash <- function(text, user_name, response_url, channel_name){
 
-  cat(paste0(user_name, " called DASH at ", Sys.time(),"\n"))
-  cat(paste0(user_name,"'s input was: ", text))
-
   s <- get_ws("key.txt", "simple_dashboard")$ws
 
   slack_message(response_url,
@@ -94,9 +88,6 @@ dash <- function(text, user_name, response_url, channel_name){
 
 ore <- function(text, user_name, response_url, channel_name){
 
-  cat(paste0(user_name, " called ORE at ", Sys.time(),"\n"))
-  cat(paste0(user_name,"'s input was: ", text))
-
   s <- get_ws("key.txt", "simple_dashboard")$ws
 
   slack_message(response_url,
@@ -107,9 +98,6 @@ ore <- function(text, user_name, response_url, channel_name){
 }
 
 rank <- function(text, user_name, response_url, channel_name){
-
-  cat(paste0(user_name, " called RANK at ", Sys.time(),"\n"))
-  cat(paste0(user_name,"'s input was: ", text))
 
   text <- trimws(gsub("rank|ranks|ranking|rankings", "", text))
 
@@ -138,32 +126,33 @@ mini <- function(text, user_name, response_url, channel_name) {
 
   if (grepl("dash|scoreboard", text)) {
 
+    print_call(user_name, "DASH", text)
     dash(text, user_name, response_url, channel_name)
 
   } else if (grepl("rank|ranks", text)) {
 
+    print_call(user_name, "RANK", text)
     rank(text, user_name, response_url, channel_name)
     #return(rank(text, user_name, response_url, channel_name))
 
   } else if (grepl("ore", text)) {
 
+    print_call(user_name, "ORE", text)
     ore(text, user_name, response_url, channel_name)
 
   } else if (grepl("link", text)) {
 
     print_call(user_name, "LINK", text)
-    # cat(paste0(user_name, " called LINK at ", Sys.time(), "\n"))
-    # cat(paste0(user_name,"'s input was: ", text), "\n")
     return(get_link("key.txt"))
 
   } else if (grepl("help", text)) {
 
-    cat(paste0(user_name, " called HELP at ", Sys.time(),"\n"))
-    cat(paste0(user_name,"'s input was: ", text))
+    print_call(user_name, "HELP", text)
     return("Check out the help doc: https://github.com/bochocki/slackrsheets")
 
   } else {
 
+    print_call(user_name, "LOG", text)
     log(text, user_name, response_url, channel_name)
 
   }
