@@ -166,12 +166,12 @@ slack_message <- function(url,
 #' @param response_url The response URL provided by Slack.
 #' @return NULL
 #' @export
-slack_forward <- function(channel_name, user_name, text, response_url) {
+slack_forward <- function(url, channel_name, user_name, text, response_url) {
 
   q <- sprintf("text=%s&user_name=%s&response_url=%s&channel_name=%s",
                text, user_name, response_url, channel_name)
 
-  httr::GET("http://162.243.218.125:4343/real_mini", query = q)
+  httr::GET(url, query = q)
 
 }
 
