@@ -124,17 +124,13 @@ rank <- function(text, user_name, response_url, channel_name){
 
 mini <- function(text, user_name, response_url, channel_name) {
 
-  slack_message(response_url,
-                channel = channel_name,
-                user_name = user_name,
-                text = "",
-                private = FALSE)
-
-  slack_message(response_url,
-                channel = channel_name,
-                user_name = user_name,
-                text = "",
-                private = TRUE)
+  httr::POST(
+    url = response_url,
+    encode = "form",
+    httr::add_headers(`Content-Type` = "application/x-www-form-urlencoded",
+                      Accept         = "*/*"),
+    body = URLencode("payload={\"status\": \"OK\"}")
+  )
 
   if (grepl("dash|scoreboard", text)) {
 
