@@ -150,6 +150,11 @@ mini <- function(text, user_name, response_url, channel_name) {
     print_call(user_name, "HELP", text)
     return("Check out the help doc: https://github.com/bochocki/slackrsheets")
 
+  } else if (grepl("none", text)) {
+
+    print_call(user_name, "NONE", text)
+    return("")
+
   } else {
 
     print_call(user_name, "LOG", text)
