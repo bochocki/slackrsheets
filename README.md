@@ -32,7 +32,7 @@ You can print the spreadsheet tables using the `/mini` slash command too. All th
 
 You can check out today's _ore_ (ahem, medals) with `/mini ore`
 
-You can print the Daily Mini dashboard by calling `/mini dash`,  `/mini dashboard`, or `/mini scoreboard`. Some of the award have been changed slightly from the spreadsheet so they fit on narrow mobile devices.
+You can print the Daily Mini dashboard by calling `/mini dash`,  `/mini dashboard`, or `/mini scoreboard`. Some of the award names have been changed slightly from the spreadsheet so they fit on narrow mobile devices.
 
 You can print any Ranking table by using the keywords `rank`, `ranks`, or `rankings` followed by an abbreviation for the table.  
 For example `/mini ranks w` will print the all-time wins table.
