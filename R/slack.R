@@ -160,50 +160,19 @@ slack_message <- function(url,
 #' Given inputs, uses httr::POST to post a message to a URL.
 #'
 #' @param url The URL to post to (character string).
-#' @param channel The channel to post the message to (character string).
+#' @param channel_name The channel to post the message to (character string).
 #' @param user_name The username to post in response to (character string).
 #' @param text The text that should be posted (character string).
 #' @param response_url The response URL provided by Slack.
 #' @return NULL
 #' @export
-slack_forward <- function(url, channel, user_name, text, response_url) {
+slack_forward <- function(channel_name, user_name, text, response_url) {
 
-  msg <- c("payload={")
+  q <- sprintf("text=%s&user_name=%s&response_url=%s&channel_name=%s",
+               text, user_name, response_url, channel_name)
 
-  if (! is.null(channel)) {
-    msg <- c(msg, sprintf("\"channel\": \"%s\"", channel))
-  }
+  httr::GET("http://162.243.218.125:4343/real_mini", query = q)
 
-  if (! is.null(user_name)) {
-    msg <- c(msg, sprintf("\"username\": \"%s\"", user_name))
-  }
-
-  if (! is.null(text)) {
-    msg <- c(msg, sprintf("\"text\": \"%s\"", text))
-  }
-
-  if (! is.null(response_url)) {
-    msg <- c(msg, sprintf("\"response_url\": \"%s\"", response_url))
-  }
-
-  msg <- c(msg, "}")
-
-  ml <- length(msg)
-
-  if (ml > 3) {
-    msg <- paste0(msg[1],
-                  paste0(msg[-c(1, ml - 1, ml)], collapse = ","),
-                  ",",
-                  paste0(msg[ml - c(1, 0)],      collapse = ""))
-  }
-
-  httr::POST(
-    url = url,
-    encode = "form",
-    httr::add_headers(`Content-Type` = "application/x-www-form-urlencoded",
-                      Accept         = "*/*"),
-    body = URLencode(msg)
-  )
 }
 
 # function to format pandoc tables as code blocks in Slack
