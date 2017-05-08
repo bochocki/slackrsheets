@@ -86,10 +86,10 @@ slack_text_pass <- function(user_given, time) {
     responses <- c(
       sprintf("Well %s, at least you finished.", user_given),
       sprintf("Well, you learned something new today I bet. Maybe?"),
-      sprintf(">I got you %s. I got you good. _Your soul is mine._\n>Joel Fagliano"),
+      sprintf(">I got you %s. I got you good. _Your soul is mine._\n>Joel Fagliano", user_given),
       sprintf("Well %s, you didn't fail today at least. Startin' the day off _right_", user_given),
       sprintf("I'm proud of your perseverance %s. You got a real sticktoitiveness.", user_given),
-      sprintf("You're a winner in _my_ book, %s.\nI'm just a lowly slackbot, and I don't have any books, but if I _did_ I'd definitely write %s and _IS A WINNER_ on the same page.")
+      sprintf("You're a winner in _my_ book.\nI'm just a lowly slackbot, and I don't have any books, but if I _did_ I'd definitely write %s and _IS A WINNER_ on the same page.", user_given)
     )
   }
 
