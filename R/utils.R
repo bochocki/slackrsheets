@@ -70,6 +70,7 @@ ssplit = function(x, split){
 #' dm_date(shift = -7)  # one week ago
 #' @export
 dm_date <- function(date = Sys.Date(), shift = 0) {
+  print(date)
   tmp_date <- as.Date(date) + shift
   dow   <- weekdays(tmp_date, abbreviate = T)
   month <- month.abb[as.numeric(strsplit(as.character(tmp_date), "-")[[1]][2])]
