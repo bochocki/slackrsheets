@@ -189,9 +189,9 @@ slack_parse = function(text, user_name){
     shiftp <- ssplit(text, "[ ][+]")[-1]
     shiftp <- suppressWarnings(shiftp[which(! is.na(as.numeric(shiftp)))])
     if (length(shiftp) > 1) {
-      return(paste0("A `%2B` sign can only be used with numbers to record times",
-                  " of a future day. Tomorrow's time, for example, can be",
-                  " recorded using `+1`"))
+      return(paste0("A `%2B` sign can only be used with one number to record ",
+                  "the time for a future day. Tomorrow's time, for example, can",
+                  "be  recorded using `%2B1`"))
     } else if (length(shiftp) == 0) {
       shiftp <- NULL
     } else {
@@ -204,9 +204,9 @@ slack_parse = function(text, user_name){
     shiftm <- ssplit(text, "[ ][-]")[-1]
     shiftm <- suppressWarnings(shiftm[which(! is.na(as.numeric(shiftm)))])
     if (length(shiftm) > 1) {
-      return(paste0("A `-`` sign can only be used with numbers to record times of",
-                  " a future day. Yesterday's time, for example, can be ",
-                  "recorded using `-1`"))
+      return(paste0("A `-` sign can only be used with one number to record ",
+                  "the dime for a future day. Yesterday's time, for example, ",
+                  "can be recorded using `-1`"))
     } else if (length(shiftm) == 0) {
       shiftm <- NULL
     } else {
@@ -222,8 +222,8 @@ slack_parse = function(text, user_name){
   } else if (! is.null(shiftp) & is.null(shiftm)) {
     shift <- shiftp
   } else {
-    return(paste0("The `+` and `-` signs, when followed by a number, can only ",
-                "be used to record times on future and past dates."))
+    return(paste0("The `%2B` and `-` signs, when followed by a number, can ",
+                "only be used to record times on future and past dates."))
   }
 
   # find out if the user is posting for somebody else, and grab the time
