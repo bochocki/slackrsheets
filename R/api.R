@@ -160,4 +160,5 @@ mini <- function(text, user_name, response_url, channel_name) {
     log(text, user_name, response_url, channel_name)
 
   }
+  return("Session finished.")
 }
