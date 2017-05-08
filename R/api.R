@@ -1,62 +1,95 @@
-update <- function(text, user_name, response_url, channel_name) {
+# @param unames A user-defined \code{\link[base]{switch}} function that
+#   identifies user-specific column-names given a username (see
+#   \code{\link{write_time}} examples).
+# @examples
+# \dontrun{
+#
+# unames <- function(user) {
+#   switch(user,
+#          user_1 = "A_User",
+#          user_2 = "B_User",
+#          user_3 = "C_User"
+#   )
+# }
+log <- function(text, user_name, response_url, channel_name) {
+
+  print(paste0(user_name, " called UPDATE at ", Sys.time()))
+  print(paste0(user_name,"'s input was: ", text))
+  print("\n")
 
   source("unames.R")
 
-  user_str <- unlist(strsplit(unames(user_name)," "))[1]
+  IN <- slack_parse(text, user_name)
 
-  if (! check_input(text)) {
-    resp <- httr::POST(url = response_url, encode = "form",
-                       httr::add_headers(`Content-Type` = "application/x-www-form-urlencoded", Accept = "*/*"),
-                       body = URLencode(sprintf("payload={\"response_type\": \"in_channel\",
-                                                 \"channel\": \"%s\",
-                                                 \"username\": \"%s\",
-                                                 \"text\": \"%s: fail.\"}",
-                                                channel_name, user_name, user_str)))
 
-    resp <- httr::POST(url = response_url, encode = "form",
-                       httr::add_headers(`Content-Type` = "application/x-www-form-urlencoded", Accept = "*/*"),
-                       body = URLencode(sprintf("payload={\"response_type\": \"ephemeral\",
-                                                 \"channel\": \"%s\",
-                                                 \"username\": \"%s\",
-                                                 \"text\": \"_Ouch. Better luck next time %s._\"}",
-                                                channel_name, user_name, user_str)))
+  user_name  <- IN$user_name
+  user_col   <- unames(user_name)
+  user_given <- ssplit(user_col, " ")[1]
+
+  GS <- get_ws("key.txt", "Data")
+
+  confirmation <- write_time(GS$ss, GS$ws,
+                             user_col, user_given,
+                             IN$time, IN$shift, IN$ow)
+
+  # Post public message about time
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = slack_post_time(user_given, IN$time, IN$shift),
+                private = FALSE)
+
+  # Post private confirmation that time was uploaded
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = confirmation,
+                private = TRUE)
+
+  # Post private message about time
+  if (check_input(time)) {
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = slack_text_fail(user_given, IN$time),
+                  private = TRUE)
   } else {
-    date_str <- slackrsheets::dm_date()
-    time_str <- slackrsheets::format_time(text)
-
-    resp <- httr::POST(url = response_url, encode = "form",
-                       httr::add_headers(`Content-Type` = "application/x-www-form-urlencoded", Accept = "*/*"),
-                       body = URLencode(sprintf("payload={\"response_type\": \"in_channel\",
-                                                  \"channel\": \"%s\",
-                                                  \"username\": \"%s\",
-                                                  \"text\": \"Good hustle %s. Got you down for %s on %s.\"}",
-                                                channel_name, user_name, user_str, time_str, date_str)))
-
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = slack_text_fail(user_given),
+                  private = TRUE)
   }
-
-  GS <- slackrsheets::get_ws("key.txt", "Data")
-
-  return(
-    invisible(
-      slackrsheets::write_time(GS$ss, GS$ws, text, user_name, unames)
-    )
-  )
 }
 
-dash <- function(response_url){
+dash <- function(text, user_name, response_url){
 
-  print("User called dash")
+  print(paste0(user_name, " called DASH at ", Sys.time()))
+  print(paste0(user_name,"'s input was: ", text))
+  print("\n")
 
   s <- slackrsheets::get_ws("key.txt", "simple_dashboard")$ws
 
   return(paste0(paste0(matrix(slackrsheets::print_scoreboard(s)),collapse="\n")," "))
 }
 
-rank <- function(text, response_url){
+rank <- function(text, user_name, response_url){
 
-  print("User called rank")
+  print(paste0(user_name, " called RANK at ", Sys.time()))
+  print(paste0(user_name, "'s input was: ", text))
+  print("\n")
 
   r <- slackrsheets::get_ws("key.txt", "Ranks")$ws
 
   return(paste0(paste0(matrix(slackrsheets::print_board(text, r)),collapse="\n")," "))
+}
+
+mini <- function(text, user_name, response_url, channel_name) {
+  if (grepl("dash|scoreboard", text)) {
+    dash(text, user_name, response_url)
+  } else if (grepl("rank", text)) {
+    rank(text, user_name, response_url)
+  } else {
+    log(text, user_name, response_url, channel_name)
+  }
 }
