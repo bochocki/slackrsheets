@@ -87,7 +87,7 @@ rank <- function(text, user_name, response_url){
 mini <- function(text, user_name, response_url, channel_name) {
   if (grepl("dash|scoreboard", text)) {
     dash(text, user_name, response_url)
-  } else if (grepl("rank", text)) {
+  } else if (grepl("rank|ranks", text)) {
     rank(text, user_name, response_url)
   } else {
     log(text, user_name, response_url, channel_name)
