@@ -46,7 +46,7 @@ The tables and abbreviations (case insensitive) are:
 # Help and reminders
 You can get help anytime by typing `/mini help`
 
-If you're getting a weird error message from a slackbot that says something like the following:
+If you're getting either of these error messages from slackbot:  
 
 >Darn – that slash command didn't work (error message: `502_service_error`). Manage the command at Daily Mini Bot.   
 >Darn – that slash command didn't work (error message: `Timeout was reached`). Manage the command at Daily Mini Bot.  
