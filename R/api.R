@@ -20,52 +20,61 @@ log <- function(text, user_name, response_url, channel_name) {
 
   IN <- slack_parse(text, user_name)
 
-  user_name  <- IN$user_name
-  user_col   <- unames(user_name)
-  user_given <- ssplit(user_col, " ")[1]
-
-  GS <- get_ws("key.txt", "Data")
-
-  # calibrate date to EST
-  date <- as.Date(format(as.POSIXct(Sys.time(), tz = Sys.timezone()),
-                         tz = "America/New_York",
-                         usetz = TRUE))
-
-  confirmation <- write_time(GS$ss, GS$ws,
-                             IN$time, user_col,
-                             date, IN$shift, IN$ow)
-
-  # Post private confirmation that time was uploaded
-  slack_message(response_url,
-                channel = channel_name,
-                user_name = user_name,
-                text = confirmation,
-                private = TRUE)
-
-  if (!grepl("include the flag -ow", confirmation)) {
-
-    # Post private message about time
-    if (check_input(IN$time)) {
-      slack_message(response_url,
-                    channel = channel_name,
-                    user_name = user_name,
-                    text = slack_text_pass(user_given, IN$time),
-                    private = TRUE)
-    } else {
-      slack_message(response_url,
-                    channel = channel_name,
-                    user_name = user_name,
-                    text = slack_text_fail(user_given),
-                    private = TRUE)
-    }
-
-    # Post public message about time
+  if(length(IN) == 1){
     slack_message(response_url,
                   channel = channel_name,
                   user_name = user_name,
-                  text = slack_post_time(user_given, IN$time, IN$shift),
-                  private = FALSE)
+                  text = IN,
+                  private = TRUE)
+  } else {
 
+    user_name  <- IN$user_name
+    user_col   <- unames(user_name)
+    user_given <- ssplit(user_col, " ")[1]
+
+    GS <- get_ws("key.txt", "Data")
+
+    # calibrate date to EST
+    date <- as.Date(format(as.POSIXct(Sys.time(), tz = Sys.timezone()),
+                           tz = "America/New_York",
+                           usetz = TRUE))
+
+    confirmation <- write_time(GS$ss, GS$ws,
+                               IN$time, user_col,
+                               date, IN$shift, IN$ow)
+
+    # Post private confirmation that time was uploaded
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = confirmation,
+                  private = TRUE)
+
+    if (!grepl("include the flag -ow", confirmation)) {
+
+      # Post private message about time
+      if (check_input(IN$time)) {
+        slack_message(response_url,
+                      channel = channel_name,
+                      user_name = user_name,
+                      text = slack_text_pass(user_given, IN$time),
+                      private = TRUE)
+      } else {
+        slack_message(response_url,
+                      channel = channel_name,
+                      user_name = user_name,
+                      text = slack_text_fail(user_given),
+                      private = TRUE)
+      }
+
+      # Post public message about time
+      slack_message(response_url,
+                    channel = channel_name,
+                    user_name = user_name,
+                    text = slack_post_time(user_given, IN$time, IN$shift),
+                    private = FALSE)
+
+    }
   }
 }
 
