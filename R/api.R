@@ -92,6 +92,20 @@ dash <- function(text, user_name, response_url, channel_name){
                 private = TRUE)
 }
 
+ore <- function(text, user_name, response_url, channel_name){
+
+  cat(paste0(user_name, " called ORE at ", Sys.time(),"\n"))
+  cat(paste0(user_name,"'s input was: ", text))
+
+  s <- get_ws("key.txt", "simple_dashboard")$ws
+
+  slack_message(response_url,
+                channel = channel_name,
+                user_name = user_name,
+                text = slack_table(print_scoreboard(s)[1:6]),
+                private = TRUE)
+}
+
 rank <- function(text, user_name, response_url, channel_name){
 
   cat(paste0(user_name, " called RANK at ", Sys.time(),"\n"))
