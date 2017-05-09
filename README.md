@@ -9,7 +9,7 @@ Your time can be in just about any form; 1:02, 62, and 00:01:02 all have the sam
 To log somebody else's time, just use the `for` keyword:  
 `/mini 0:39 for Brad`
 
-Keep in mind that **posting times are in ECB (East-Coast Bias)**, so if you're on the West Coast and you're posting a time late at night, you might need to post the time for *yesterday*. Which you can totally do.
+Keep in mind that **posting times are subject to ECB (East-Coast Bias)**, so if you're on the West Coast and you're posting a time late at night, you might need to post the time for *yesterday*. Which you can totally do.
 
 You can log past or future days using a `+` or `-` tag. So, logging a time for yesterday would look like:  
 `/mini 42 -1`
