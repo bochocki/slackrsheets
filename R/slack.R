@@ -26,15 +26,15 @@ slack_post_time <- function(user_given, time, shift) {
 #' @export
 slack_text_fail <- function(user_given) {
   responses <- c(
-    sprintf("It's a hard knock life, %s.", user_given),
-    sprintf("_Ouch_. Better luck next time %s.", user_given),
-    sprintf("Remember that poster of the kitten on the tree branch?\nHang in there %s.", user_given),
-    sprintf("It's okay, maybe Brian failed today too."),
-    sprintf("No biggie, %s, don't sweat it.", user_given),
-    sprintf("Sometimes, failure is ~not~ an option, I guess?"),
-    sprintf(">Dang, today's puzzle was _ruff_.\n>-a dog I heard on the street today"),
-    sprintf("Welp, at least you had fun, right %s?", user_given),
-    sprintf("I feel your pain, %s. I feel your pain.", user_given)
+    sprintf("It's a hard knock life, %s. :sweat:", user_given),
+    sprintf("_Ouch_. Better luck next time %s. :face_with_head_bandage:", user_given),
+    sprintf("Remember that poster of the kitten on the tree branch? :cat:\nHang in there %s.", user_given),
+    sprintf("It's okay, maybe Brian failed today too. :grimacing:"),
+    sprintf("No biggie, %s, don't sweat it. :sweat_smile:", user_given),
+    sprintf("Sometimes, failure is ~not~ an option, I guess? :thinking_face:"),
+    sprintf(">Dang, today's puzzle was _ruff_.\n>-a dog I heard on the street today :dog:"),
+    sprintf("Welp, at least you had fun, right %s? :sob:", user_given),
+    sprintf("I feel your pain, %s. I feel your pain. :weary:", user_given)
   )
   return(responses[sample(length(responses), 1)])
 }
@@ -50,46 +50,50 @@ slack_text_pass <- function(user_given, time) {
 
   secs <- hms_to_s(format_time(time))
 
-  if (secs < 15) {
+  if (secs < 20) {
     responses <- c(
-      sprintf("SLOW DOWN, %s, YOU'RE GONNA HURT SOMEBODY!", user_given),
-      sprintf("_Damn_ %s, where's the fire?!", user_given),
-      sprintf("How do you even read the clues that fast?"),
-      sprintf("That's a _mighty_ fast time %s. We're gonna need you to pee into a cup.", user_given),
-      sprintf("%s: Please contact CREVICE to verify your time.", user_given),
-      sprintf("%s: Slayer of Puzzles, Breaker of Hearts.", user_given)
+      sprintf("SLOW DOWN, %s, YOU'RE GONNA HURT SOMEBODY! :explody_parrot:", user_given),
+      sprintf("_Damn_ %s, where's the fire?! :fire::fire::fire:", user_given),
+      sprintf("How do you even read the clues that fast? :fast_parrot:"),
+      sprintf("That's a _mighty_ fast time %s. We're gonna need you to pee into a cup. :beer:", user_given),
+      sprintf("%s: Please contact CREVICE to verify your absurdly fast time. :sleuth_or_spy:", user_given),
+      sprintf("%s: Slayer of Puzzles, Breaker of Hearts. :crossed_swords::shield:", user_given)
     )
   } else if (secs < 45) {
     responses <- c(
-      sprintf("You might be looking at some ORE today, %s.", user_given),
-      sprintf("And. The. Crowd. Goes. Wild!"),
+      sprintf("You might be looking at some ORE today, %s. :sports_medal:", user_given),
+      sprintf("And :clap::skin-tone-3: The :clap::skin-tone-6: Crowd :clap::skin-tone-4: Goes :clap::skin-tone-2: Wild! :clap::skin-tone-5:"),
       sprintf("There's an electricity in the room, I can feel it. Ya done good %s.", user_given),
-      sprintf("Well done, %s. Well done.", user_given),
-      sprintf("You kinda crushed it today %s.", user_given)
+      sprintf("Well done, %s. Well done. :slowclap:", user_given),
+      sprintf("You kinda crushed it today %s. :muscle::skin-tone-%i:", user_given, sample(2:6,1))
+    )
+  } else if (secs == 69) {
+    responses <- c(
+      sprintf("69 seconds, huh %s :wink:? lol, _nice _.", user_given)
     )
   } else if (secs < 120) {
     responses <- c(
-      sprintf("Another day, another crossword."),
-      sprintf("Good game, good game."),
-      sprintf("Nothing more exciting than competive crossword puzzlin'!."),
-      sprintf("Make sure to stretch before and after you _puzz_."),
-      sprintf("You put in some _work_ today %s.", user_given)
+      sprintf("Another day, another crossword. :+1::skin-tone-%i:", sample(2:6,1)),
+      sprintf("Good game, good game. :raised_hand_with_fingers_splayed::skin-tone-%i:", sample(2:6,1)),
+      sprintf("Nothing more exciting than competive crossword puzzlin'!"),
+      sprintf("Make sure to stretch before and after you _puzz_. :athletic_shoe:"),
+      sprintf("You put in some _work_ today %s. :briefcase:", user_given)
     )
   } else if (secs < 300) {
     responses <- c(
-      sprintf("This one was a real noggin-scratcher, huh?"),
-      sprintf("I hope you're playing for fun today %s.", user_given),
-      sprintf("Mr. Fagliano's up to his old tricks again, eh %s?", user_given),
-      sprintf("Geez, tough one today."),
-      sprintf("Wowzers Bowsers. Good game %s.", user_given)
+      sprintf("This one was a real noggin-scratcher, huh? :bow:"),
+      sprintf("I hope you're playing for fun today %s. :sweat_smile:", user_given),
+      sprintf("Mr. Fagliano's up to his old tricks again, eh %s? :man::skin-tone-4:", user_given),
+      sprintf("Geez, tough one today. :confused:"),
+      sprintf("Wowzers Bowsers. Good game %s. :+1::skin-tone-%i:", user_given, sample(2:6,1))
     )
   } else {
     responses <- c(
-      sprintf("Well %s, at least you finished.", user_given),
-      sprintf("Well, you learned something new today I bet. Maybe?"),
-      sprintf(">I got you %s. I got you good. _Your soul is mine._\n>Joel Fagliano", user_given),
-      sprintf("Well %s, you didn't fail today at least. Startin' the day off _right_", user_given),
-      sprintf("I'm proud of your perseverance %s. You got a real sticktoitiveness.", user_given),
+      sprintf("Well %s, at least you finished. :neutral_face:", user_given),
+      sprintf("Well, you learned something new today I bet. Maybe? :confused:"),
+      sprintf(">I got you %s. I got you good. _Your soul is mine._\n>Joel Fagliano :man::skin-tone-4:", user_given),
+      sprintf("Well %s, you didn't fail today at least. Startin' the day off _right_ :+1::skin-tone-%i:", user_given, sample(2:6,1)),
+      sprintf("I'm proud of your perseverance %s. :clap::skin-tone-%i: You got a real sticktoitiveness.", user_given, sample(2:6,1)),
       sprintf("You're a winner in _my_ book.\nI'm just a lowly slackbot, and I don't have any books, but if I _did_ I'd definitely write %s and _IS A WINNER_ on the same page.", user_given)
     )
   }
