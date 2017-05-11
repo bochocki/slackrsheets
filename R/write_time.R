@@ -45,7 +45,8 @@ write_time <- function(ss,
                     "To overwrite it, include the flag -ow, like this:\n",
                     "`/mini [time] -ow`\n",
                     "To post a time for tomorrow, include a '%%2B1' in your call,",
-                    "like this:\n `/mini [time] %%2B1`.")
+                    "like this:\n `/mini [time] %%2B1`\n.",
+                    "Please alter your input and try again.")
       out <- sprintf(out,
                      ssplit(user_col, " ")[1],
                      dm_date(date, shift),

@@ -251,7 +251,8 @@ slack_parse = function(text, user_name){
     shift <- shiftp
   } else {
     return(paste0("The `%2B` and `-` signs, when followed by a number, can ",
-                "only be used to record times on future and past dates."))
+                "only be used to record times on future and past dates.\n",
+                "Please alter your input and try again."))
   }
 
   # find out if the user is posting for somebody else, and grab the time
