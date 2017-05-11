@@ -32,11 +32,16 @@ log <- function(text, user_name, response_url, channel_name) {
                              IN$time, user_col,
                              date, IN$shift, IN$ow)
 
-  print(confirmation)
   if (!grepl("include the flag -ow", confirmation)) {
 
     # Post private message about time
     if (check_input(IN$time)) {
+
+      print(confirmation)
+      print("\n")
+      print(paste0(confirmation, "\n",
+                    slack_text_pass(user_given, IN$time)))
+
       slack_message(response_url,
                     channel = channel_name,
                     user_name = user_name,
