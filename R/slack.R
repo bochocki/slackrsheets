@@ -73,7 +73,7 @@ slack_text_pass <- function(user_given, time) {
     )
   } else if (secs < 120) {
     responses <- c(
-      sprintf("Another day, another crossword. :+1::skin-tone-%i:", sample(2:6,1)),
+      sprintf("Another day, another crossword. :%%2B1::skin-tone-%i:", sample(2:6,1)),
       sprintf("Good game, good game. :raised_hand_with_fingers_splayed::skin-tone-%i:", sample(2:6,1)),
       sprintf("Nothing more exciting than competive crossword puzzlin'!"),
       sprintf("Make sure to stretch before and after you _puzz_. :athletic_shoe:"),
@@ -85,14 +85,14 @@ slack_text_pass <- function(user_given, time) {
       sprintf("I hope you're playing for fun today %s. :sweat_smile:", user_given),
       sprintf("Mr. Fagliano's up to his old tricks again, eh %s? :man::skin-tone-4:", user_given),
       sprintf("Geez, tough one today. :confused:"),
-      sprintf("Wowzers Bowsers. Good game %s. :+1::skin-tone-%i:", user_given, sample(2:6,1))
+      sprintf("Wowzers Bowsers. Good game %s. :%%2B1::skin-tone-%i:", user_given, sample(2:6,1))
     )
   } else {
     responses <- c(
       sprintf("Well %s, at least you finished. :neutral_face:", user_given),
       sprintf("Well, you learned something new today I bet. Maybe? :confused:"),
       sprintf(">I got you %s. I got you good. _Your soul is mine._\n>Joel Fagliano :man::skin-tone-4:", user_given),
-      sprintf("Well %s, you didn't fail today at least. Startin' the day off _right_ :+1::skin-tone-%i:", user_given, sample(2:6,1)),
+      sprintf("Well %s, you didn't fail today at least. Startin' the day off _right_ :%%2B1::skin-tone-%i:", user_given, sample(2:6,1)),
       sprintf("I'm proud of your perseverance %s. :clap::skin-tone-%i: You got a real sticktoitiveness.", user_given, sample(2:6,1)),
       sprintf("You're a winner in _my_ book.\nI'm just a lowly slackbot, and I don't have any books, but if I _did_ I'd definitely write %s and _IS A WINNER_ on the same page.", user_given)
     )
