@@ -36,12 +36,6 @@ log <- function(text, user_name, response_url, channel_name) {
 
     # Post private message about time
     if (check_input(IN$time)) {
-
-      print(confirmation)
-      print("\n")
-      print(paste0(confirmation, "\n",
-                    slack_text_pass(user_given, IN$time)))
-
       slack_message(response_url,
                     channel = channel_name,
                     user_name = user_name,
@@ -64,6 +58,12 @@ log <- function(text, user_name, response_url, channel_name) {
                   text = slack_post_time(user_given, IN$time, IN$shift),
                   private = FALSE)
 
+  } else {
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = paste0(confirmation),
+                  private = TRUE)
   }
 }
 
