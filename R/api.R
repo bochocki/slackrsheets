@@ -18,12 +18,12 @@ log <- function(text, user_name, response_url, channel_name) {
   IN <- slack_parse(text, user_name)
 
   if(is.character(IN)){
-    # slack_message(response_url,
-    #               channel = channel_name,
-    #               user_name = user_name,
-    #               text = IN,
-    #               private = TRUE)
-    return(IN)
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = IN,
+                  private = TRUE)
+    return("Session finished.")
   }
 
   user_name  <- IN$user_name
