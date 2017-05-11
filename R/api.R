@@ -15,8 +15,15 @@ log <- function(text, user_name, response_url, channel_name) {
 
   source("unames.R")
 
-  print(text)
   IN <- slack_parse(text, user_name)
+
+  if(is.character(IN)){
+    slack_message(response_url,
+                  channel = channel_name,
+                  user_name = user_name,
+                  text = IN,
+                  private = TRUE)
+  }
 
   user_name  <- IN$user_name
   user_col   <- unames(user_name)
