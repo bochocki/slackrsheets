@@ -15,6 +15,7 @@ log <- function(text, user_name, response_url, channel_name) {
 
   source("unames.R")
 
+  print(text)
   IN <- slack_parse(text, user_name)
 
   user_name  <- IN$user_name
