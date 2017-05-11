@@ -50,14 +50,12 @@ write_time <- function(ss,
                      ssplit(user_col, " ")[1],
                      dm_date(date, shift),
                      entry)
-      print(out)
     } else {
       out <- "Logged %s for %s on %s and overwrote the previous entry."
       out <- sprintf(out,
                      edit_data(ss, d, time, user_col, date, shift),
                      ssplit(user_col, " ")[1],
                      dm_date(date, shift))
-      print(out)
     }
   } else {
     out <- "Logged %s for %s on %s."
@@ -65,7 +63,6 @@ write_time <- function(ss,
                    edit_data(ss, d, time, user_col, date, shift),
                    ssplit(user_col, " ")[1],
                    dm_date(date, shift))
-    print(out)
   }
   return(out)
 }
