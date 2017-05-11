@@ -32,6 +32,7 @@ log <- function(text, user_name, response_url, channel_name) {
                              IN$time, user_col,
                              date, IN$shift, IN$ow)
 
+  print(confirmation)
   if (!grepl("include the flag -ow", confirmation)) {
 
     # Post private message about time
