@@ -11,3 +11,5 @@ tests/testthat/key\.R
 *.Rproj
 
 tests/testthat/key\.txt
+
+R/tmp\.R
