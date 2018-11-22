@@ -1,8 +1,6 @@
 # slackrsheets
 A hyper-specific R package for posting NYTimes Daily Mini Crossword times to a Google Spreadsheet, from Slack.
 
-# Here's an incorrect title.
-
 # How to use this thing in Slack
 To add your time for today, just enter your time: `/mini 1:42`
 
